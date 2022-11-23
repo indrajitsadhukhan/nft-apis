@@ -12,12 +12,17 @@ app.get("/", function(req, res) {
     var response={}
 res.send(response)
 });
+app.get("/nfts", function(req, res) {
+    var response={}
+    
+res.send(response)
+});
 
-app.post("/mint", function(req, res) {
-    var json=call.mintNFTs()
+app.post("/mint", async function(req, res) {
+   var json=await call.mintNFTs()
     res.send(json)
 });
 
 app.listen(port, function(){
-console.log("server is running on port"+port);
+console.log("server is running on port ",port);
 })

@@ -12,8 +12,11 @@ contract MintNFT is ERC721, ERC721Enumerable {
     constructor() ERC721("MintNFT", "CC") {
     }
 
-    function mint(uint _id) public {
+    function mint(string memory _coder)  public {
+        coders.push(_coder);
+        uint _id = coders.length - 1;
         _mint(msg.sender, _id);
+        _coderExists[_coder] = true;
     }
 
 function _beforeTokenTransfer(address from, address to, uint256 tokenId,uint256 batchSize)

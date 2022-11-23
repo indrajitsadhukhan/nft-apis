@@ -85,11 +85,11 @@ module.exports = {
     sepolia: {
       provider: () => new HDWalletProvider(MNEMONIC, `https://sepolia.infura.io/v3/${INFURA_API_KEY}`),
       network_id: "*",       // sepolia's id
-      confirmations: 0,    // # of confirmations to wait between deployments. (default: 0)
-      timeoutBlocks: 200000,  // # of blocks before a deployment times out  (minimum/default: 50)
-      skipDryRun: true,
-      gas: 6721975,
-      gasPrice:1
+      confirmations: 2,    // # of confirmations to wait between deployments. (default: 0)
+      timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: false,
+      gas: 5221975,
+      gasPrice:1,
        // Specified in Wei
         // Skip dry run before migrations? (default: false for public nets )
     },
