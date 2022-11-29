@@ -28,7 +28,8 @@ async function mintNFTs() {
   );
   // console.log(contract)
   // Issuing a transaction that calls the "mint" method
-  const tx=contract.methods.mint("abc")
+  const _tokenURI="https://ipfs.io/ipfs/QmQmjNq9qenh9sjpDaZXQrJDSYMc1fyieDYvdr1wK36upJ?filename=meta1.json"
+  const tx=contract.methods.mint(_tokenURI)
 var url,blocknumber;
   const receipt = await tx
   .send({
