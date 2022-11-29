@@ -1,0 +1,11 @@
+{
+    "name": "Indrajit",
+    "description": "My NFT",
+    "image": "https://ipfs.io/ipfs/QmVrxi3oqby1M6MsqGTf9m8vM8i5j94SZq1grMBVwYSV21?filename=1.png",
+    "attributes": [
+        {
+            "trait_type": "trait",
+            "value": 100
+        }
+    ]
+}

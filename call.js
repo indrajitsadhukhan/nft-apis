@@ -3,6 +3,7 @@ const Web3 = require("web3");
 // (the results of a previous compilation step)
 const fs = require("fs");
 const { abi } = JSON.parse(fs.readFileSync("build/contracts/MintNFT.json"));
+const pinata=require('./pinata_api')
 // import { SDK, Auth, TEMPLATES } from '@infura/sdk';
 
 async function mintNFTs() {
@@ -28,9 +29,21 @@ async function mintNFTs() {
   );
   // console.log(contract)
   // Issuing a transaction that calls the "mint" method
-  const _tokenURI="https://ipfs.io/ipfs/QmQmjNq9qenh9sjpDaZXQrJDSYMc1fyieDYvdr1wK36upJ?filename=meta1.json"
+  const res=(await pinata.pinFileToIPFS())
+  var IPFS_hash
+  if(res.status==200)
+  {
+    IPFS_hash=res.IPFS_hash
+  }
+  else 
+  {
+    console.error("File upload to pinata failed")
+    return
+  }
+
+  const _tokenURI="https://ipfs.io/ipfs/"+IPFS_hash+"?filename=meta2.json"
   const tx=contract.methods.mint(_tokenURI)
-var url,blocknumber;
+  var url,blocknumber;
   const receipt = await tx
   .send({
     from: signer.address,
@@ -48,7 +61,8 @@ var url,blocknumber;
 // The transaction is now on chain!
 blocknumber= receipt.blockNumber
 console.log('Mined in block ',blocknumber);
-return {"url":url,"blockNumber":blocknumber,"message":"NFT minted successfully"}
+console.log("IPFS Hash",IPFS_hash);
+return {"url":url,"blockNumber":blocknumber,"IPFS_hash":IPFS_hash,"message":"NFT minted successfully"}
 }
 async function getAllNFTs(){
 
