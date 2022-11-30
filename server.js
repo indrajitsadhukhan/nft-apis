@@ -18,12 +18,12 @@ const options={
         },
         servers:[
         {
-            // To call api from local server
-            url:"http://localhost:3000"
+            // Apis are deployed at this url
+            url:"http://20.40.49.126:3000"
 
         },
         {
-            // Apis are deployed at this url
+            // To call api from local server
             url:"http://localhost:3000"
 
         }
